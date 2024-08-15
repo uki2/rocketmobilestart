@@ -116,3 +116,7 @@ func _on_button_red_on_rocket_pressed():
 
 func _on_timer_red_fireup_timeout():
 	turn_led_off()
+
+
+func _on_button_restart_pressed():
+	get_tree().change_scene_to_file("res://Scens/menu.tscn")

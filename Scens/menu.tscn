@@ -114,6 +114,22 @@ color = Color(0.141176, 0.278431, 0.435294, 1)
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -644.86
+offset_right = 320.0
+offset_bottom = -4.85999
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stream = ExtResource("4_dj3lq")
+
 [node name="TextureButton" type="TextureButton" parent="."]
 visible = false
 anchors_preset = 7
@@ -176,6 +192,15 @@ grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 96
 text = "On"
+
+[node name="Button_restart" type="Button" parent="Button_debug/Buttons_light"]
+layout_mode = 0
+offset_left = -217.0
+offset_top = 504.0
+offset_right = 70.0
+offset_bottom = 656.0
+theme_override_font_sizes/font_size = 71
+text = "Restart"
 
 [node name="Klapa3d" type="Node3D" parent="."]
 
@@ -261,22 +286,6 @@ offset_bottom = 171.36
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -644.86
-offset_right = 320.0
-offset_bottom = -4.85999
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stream = ExtResource("4_dj3lq")
-
 [node name="Timer_red" type="Timer" parent="."]
 process_callback = 0
 wait_time = 5.0
@@ -295,6 +304,7 @@ text = "fire up for 15 secund"
 [connection signal="pressed" from="Button_debug" to="." method="_on_button_debug_pressed"]
 [connection signal="pressed" from="Button_debug/Buttons_light/Button_off" to="." method="_on_button_off_pressed"]
 [connection signal="pressed" from="Button_debug/Buttons_light/Button_on" to="." method="_on_button_on_pressed"]
+[connection signal="pressed" from="Button_debug/Buttons_light/Button_restart" to="." method="_on_button_restart_pressed"]
 [connection signal="animation_finished" from="Klapa3d/SubViewportContainer/SubViewport/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="mouse_entered" from="Klapa3d/Klapka" to="." method="_on_klapka_mouse_entered"]
 [connection signal="mouse_exited" from="Klapa3d/Klapka" to="." method="_on_klapka_mouse_exited"]
