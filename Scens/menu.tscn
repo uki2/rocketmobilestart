@@ -1,6 +1,10 @@
-[gd_scene format=3 uid="uid://b813u2pit8i62"]
+[gd_scene load_steps=3 format=3 uid="uid://b813u2pit8i62"]
+
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_owxal"]
+[ext_resource type="Texture2D" uid="uid://b7qbb4ryc2gdh" path="res://Assets/Pryciskzamonguswyciete.jpg" id="2_cek7r"]
 
 [node name="Menu" type="CanvasLayer"]
+script = ExtResource("1_owxal")
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
@@ -9,6 +13,7 @@ offset_left = 128.0
 offset_top = 1144.0
 offset_right = 960.0
 offset_bottom = 1584.0
+texture_normal = ExtResource("2_cek7r")
 
 [node name="Button_off" type="Button" parent="."]
 anchors_preset = 8
@@ -41,3 +46,21 @@ grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 96
 text = "On"
+
+[node name="Button_test" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 320.0
+offset_right = 1096.0
+offset_bottom = 496.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 128.0
+offset_top = 48.0
+offset_right = 848.0
+offset_bottom = 304.0
+theme_override_font_sizes/normal_font_size = 141
+text = "dfsfdsdsf"
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="pressed" from="Button_off" to="." method="_on_button_off_pressed"]
+[connection signal="pressed" from="Button_on" to="." method="_on_button_on_pressed"]
