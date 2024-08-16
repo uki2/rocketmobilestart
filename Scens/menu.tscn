@@ -1,11 +1,40 @@
-[gd_scene load_steps=12 format=3 uid="uid://b813u2pit8i62"]
+[gd_scene load_steps=14 format=3 uid="uid://b813u2pit8i62"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_owxal"]
 [ext_resource type="Texture2D" uid="uid://b7qbb4ryc2gdh" path="res://Assets/Pryciskzamonguswyciete.jpg" id="2_cek7r"]
+[ext_resource type="Script" path="res://Scripts/video_stream_player.gd" id="3_3jix8"]
 [ext_resource type="ArrayMesh" uid="uid://c3152xcqiy66k" path="res://Assets/klapkamesh.tres" id="3_7lf07"]
 [ext_resource type="VideoStream" path="res://Assets/mrcrab.ogv" id="4_dj3lq"]
+[ext_resource type="Texture2D" uid="uid://bo3wuttx6j2yp" path="res://Assets/mrcrab.jpg" id="4_te8wi"]
 
 [sub_resource type="Environment" id="Environment_jvrw3"]
+
+[sub_resource type="Animation" id="Animation_ql4ug"]
+resource_name = "Close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.0994838, 0, -2.06298), Vector3(-0.208637, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.65635, 0.218269, -0.230315), Vector3(0, 0.218269, -0.230315)]
+}
 
 [sub_resource type="Animation" id="Animation_t40i8"]
 resource_name = "Open"
@@ -61,33 +90,6 @@ tracks/1/keys = {
 "values": [Vector3(0, 0.218269, -0.230315)]
 }
 
-[sub_resource type="Animation" id="Animation_ql4ug"]
-resource_name = "Close"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.0994838, 0, -2.06298), Vector3(-0.208637, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshInstance3D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.65635, 0.218269, -0.230315), Vector3(0, 0.218269, -0.230315)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hey8y"]
 _data = {
 "Close": SubResource("Animation_ql4ug"),
@@ -120,15 +122,22 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -644.86
-offset_right = 320.0
-offset_bottom = -4.85999
+offset_left = -314.79
+offset_top = -685.72
+offset_right = 325.21
+offset_bottom = -45.72
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 stream = ExtResource("4_dj3lq")
+expand = true
+script = ExtResource("3_3jix8")
+
+[node name="Sprite2D" type="Sprite2D" parent="VideoStreamPlayer"]
+visible = false
+position = Vector2(321.79, 324)
+texture = ExtResource("4_te8wi")
 
 [node name="TextureButton" type="TextureButton" parent="."]
 visible = false
@@ -154,7 +163,6 @@ Mode"
 flat = true
 
 [node name="Buttons_light" type="Control" parent="Button_debug"]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -168,7 +176,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -894.0
 offset_top = 664.0
-offset_right = -278.0
+offset_right = -350.0
 offset_bottom = 816.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -185,7 +193,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -894.0
 offset_top = 484.0
-offset_right = -278.0
+offset_right = -350.0
 offset_bottom = 636.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -195,12 +203,32 @@ text = "On"
 
 [node name="Button_restart" type="Button" parent="Button_debug/Buttons_light"]
 layout_mode = 0
-offset_left = -217.0
+offset_left = -266.0
 offset_top = 504.0
-offset_right = 70.0
+offset_right = 46.0
 offset_bottom = 656.0
 theme_override_font_sizes/font_size = 71
 text = "Restart"
+
+[node name="Button_relay_on" type="Button" parent="Button_debug/Buttons_light"]
+layout_mode = 0
+offset_left = -266.0
+offset_top = 688.0
+offset_right = -122.0
+offset_bottom = 832.0
+theme_override_font_sizes/font_size = 36
+text = "relay
+on"
+
+[node name="Button_relay_off" type="Button" parent="Button_debug/Buttons_light"]
+layout_mode = 0
+offset_left = -98.0
+offset_top = 684.0
+offset_right = 46.0
+offset_bottom = 828.0
+theme_override_font_sizes/font_size = 36
+text = "relay
+off"
 
 [node name="Klapa3d" type="Node3D" parent="."]
 
@@ -287,7 +315,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Timer_red" type="Timer" parent="."]
-process_callback = 0
 wait_time = 5.0
 
 [node name="Timer_red_fireup" type="Timer" parent="."]
@@ -299,12 +326,16 @@ offset_left = 327.0
 offset_top = 933.0
 offset_right = 789.0
 offset_bottom = 1085.0
+theme_override_font_sizes/font_size = 46
 text = "fire up for 15 secund"
 
+[connection signal="finished" from="VideoStreamPlayer" to="VideoStreamPlayer" method="_on_finished"]
 [connection signal="pressed" from="Button_debug" to="." method="_on_button_debug_pressed"]
 [connection signal="pressed" from="Button_debug/Buttons_light/Button_off" to="." method="_on_button_off_pressed"]
 [connection signal="pressed" from="Button_debug/Buttons_light/Button_on" to="." method="_on_button_on_pressed"]
 [connection signal="pressed" from="Button_debug/Buttons_light/Button_restart" to="." method="_on_button_restart_pressed"]
+[connection signal="pressed" from="Button_debug/Buttons_light/Button_relay_on" to="." method="_on_button_relay_on_pressed"]
+[connection signal="pressed" from="Button_debug/Buttons_light/Button_relay_off" to="." method="_on_button_relay_off_pressed"]
 [connection signal="animation_finished" from="Klapa3d/SubViewportContainer/SubViewport/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="mouse_entered" from="Klapa3d/Klapka" to="." method="_on_klapka_mouse_entered"]
 [connection signal="mouse_exited" from="Klapa3d/Klapka" to="." method="_on_klapka_mouse_exited"]

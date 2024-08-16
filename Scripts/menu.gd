@@ -35,21 +35,31 @@ func turn_led_on():
 func turn_led_off():
 	# Wysyłanie żądania wyłączenia diody LED
 	http.request("http://192.168.4.1/?led=off")
+	
+
+func turn_relay_on():
+	http.request("http://192.168.4.1/?relay=on")
+
+
+func turn_relay_off():
+	http.request("http://192.168.4.1/?relay=off")
 
 # 3 state 1 = green 2 = orange itd
-func _process(delta):
+func _process(_delta):
 	#print(animationfinishedbool)
 	
 	if redbuttonpreset == true:
-		opencase = 3
+		opencase = 4
 		timer_red.stop()
 	
 	if opencase == 1:
 		color_sprawdza.set_color("green")
 		button_red_on_rocket.disabled = true
+		timer_red.stop()
 	if opencase == 2:
 		color_sprawdza.set_color("orange")
 		button_red_on_rocket.disabled = true
+		timer_red.stop()
 	if opencase == 3:
 		color_sprawdza.set_color("red")
 		button_red_on_rocket.disabled = false
@@ -106,17 +116,26 @@ func _on_timer_red_timeout():
 #warning!!!!
 func _on_button_red_on_rocket_pressed():
 	#warning!!!!
-	
+	opencase = 4
+	button_red_on_rocket.disabled = true
 	redbuttonpreset = true
 	timer_red_fireup.start()
-	turn_led_on()
+	turn_relay_on()
 	video_stream_player.play()
 	
 
 
 func _on_timer_red_fireup_timeout():
-	turn_led_off()
+	turn_relay_off()
 
 
 func _on_button_restart_pressed():
 	get_tree().change_scene_to_file("res://Scens/menu.tscn")
+
+
+func _on_button_relay_on_pressed():
+	turn_relay_on()
+
+
+func _on_button_relay_off_pressed():
+	turn_relay_off()
